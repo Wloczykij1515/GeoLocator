@@ -72,7 +72,7 @@ Każde wyszukiwanie może zostać zapisane do pliku CSV.
 Format pliku:
 
 ```csv
-name,latitude,longitude,type
+claster,category,name,latitude,longitude,distance from the center
 ```
 
 Przykład:
