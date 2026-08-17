@@ -1,0 +1,3977 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_b7a7803e97ea6a992175bfee59a723ba {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; bottom: 50px; left: 50px; z-index:1000;
+                background-color: white; padding: 15px; border: 2px solid grey;
+                border-radius: 8px; font-family: Arial, sans-serif;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+        <h4 style="margin: 0 0 10px 0;">Legenda kategorii:</h4>
+    
+        <div style="margin: 3px 0;">
+            <span style="display: inline-block; width: 14px; height: 14px;
+                        background-color: red; border-radius: 50%;
+                        margin-right: 8px; border: 1px solid #666;"></span>
+            <span style="font-size: 14px;">restauracja - Legnica</span>
+        </div>
+        
+        <div style="margin: 3px 0;">
+            <span style="display: inline-block; width: 14px; height: 14px;
+                        background-color: blue; border-radius: 50%;
+                        margin-right: 8px; border: 1px solid #666;"></span>
+            <span style="font-size: 14px;">parkingi - Legnica</span>
+        </div>
+        
+        <hr style="margin: 8px 0;">
+        <div style="font-size: 12px; color: #666;">
+            Zolte kola = klastry<br>
+            Numery = ID klastrow
+        </div>
+    </div>
+    
+    
+            <div class="folium-map" id="map_b7a7803e97ea6a992175bfee59a723ba" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_b7a7803e97ea6a992175bfee59a723ba = L.map(
+                "map_b7a7803e97ea6a992175bfee59a723ba",
+                {
+                    center: [51.2081617, 16.1603187],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d2689fb1dae64ceb1678e1bb7dcdd5c0 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_d2689fb1dae64ceb1678e1bb7dcdd5c0.addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var marker_5fbc6dba3d5f3f5ff1bf87f8672a5aaf = L.marker(
+                [51.2081617, 16.1603187],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_9501f088a2abbf8b24fbdfbf2be1c922 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_57bcee97e694ac83ce96775a63743b4e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d0857915eb596e7d65b213c145fcfacf = $(`<div id="html_d0857915eb596e7d65b213c145fcfacf" style="width: 100.0%; height: 100.0%;"><b>Centrum: Legnica, województwo dolnośląskie, 59-220, Polska</b></div>`)[0];
+                popup_57bcee97e694ac83ce96775a63743b4e.setContent(html_d0857915eb596e7d65b213c145fcfacf);
+            
+        
+
+        marker_5fbc6dba3d5f3f5ff1bf87f8672a5aaf.bindPopup(popup_57bcee97e694ac83ce96775a63743b4e)
+        ;
+
+        
+    
+    
+            marker_5fbc6dba3d5f3f5ff1bf87f8672a5aaf.bindTooltip(
+                `<div>
+                     Centrum miasta
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5fbc6dba3d5f3f5ff1bf87f8672a5aaf.setIcon(icon_9501f088a2abbf8b24fbdfbf2be1c922);
+            
+    
+            var marker_bd7500ccd64d33bf9d4e025b09e58852 = L.marker(
+                [51.206512, 16.179065],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_c2cf75b7b173f095fa5f1d98d2ff1ce8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_232ac7df9eb84be308fff5baf02fa884 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_de28428aa8fc070e174a6bfd268cbbb3 = $(`<div id="html_de28428aa8fc070e174a6bfd268cbbb3" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_1064</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.206512<br>                 Lon: 16.179065             </div>             </div>`)[0];
+                popup_232ac7df9eb84be308fff5baf02fa884.setContent(html_de28428aa8fc070e174a6bfd268cbbb3);
+            
+        
+
+        marker_bd7500ccd64d33bf9d4e025b09e58852.bindPopup(popup_232ac7df9eb84be308fff5baf02fa884)
+        ;
+
+        
+    
+    
+            marker_bd7500ccd64d33bf9d4e025b09e58852.bindTooltip(
+                `<div>
+                     parkingi_1064 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bd7500ccd64d33bf9d4e025b09e58852.setIcon(icon_c2cf75b7b173f095fa5f1d98d2ff1ce8);
+            
+    
+            var marker_72812ace25983a6d5b54d7f6a01b789c = L.marker(
+                [51.208655, 16.168777],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_411ddf5ede7424a23d5527d8eaad19f9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4dc0bc0c926b5c1bab305f6a61d299f0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5b686a17362597f6ec2298d3d49e06b1 = $(`<div id="html_5b686a17362597f6ec2298d3d49e06b1" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_1077</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.208655<br>                 Lon: 16.168777             </div>             </div>`)[0];
+                popup_4dc0bc0c926b5c1bab305f6a61d299f0.setContent(html_5b686a17362597f6ec2298d3d49e06b1);
+            
+        
+
+        marker_72812ace25983a6d5b54d7f6a01b789c.bindPopup(popup_4dc0bc0c926b5c1bab305f6a61d299f0)
+        ;
+
+        
+    
+    
+            marker_72812ace25983a6d5b54d7f6a01b789c.bindTooltip(
+                `<div>
+                     parkingi_1077 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_72812ace25983a6d5b54d7f6a01b789c.setIcon(icon_411ddf5ede7424a23d5527d8eaad19f9);
+            
+    
+            var marker_596d95948e9fd6bcc9002786314336fd = L.marker(
+                [51.207218, 16.189584],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_151f4ff16d11431c039ba1701124c7e1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_272608a688a1034f3607d036e5d22936 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7b1b95b8218657d73fc55ec0704cc25c = $(`<div id="html_7b1b95b8218657d73fc55ec0704cc25c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_1017</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.207218<br>                 Lon: 16.189584             </div>             </div>`)[0];
+                popup_272608a688a1034f3607d036e5d22936.setContent(html_7b1b95b8218657d73fc55ec0704cc25c);
+            
+        
+
+        marker_596d95948e9fd6bcc9002786314336fd.bindPopup(popup_272608a688a1034f3607d036e5d22936)
+        ;
+
+        
+    
+    
+            marker_596d95948e9fd6bcc9002786314336fd.bindTooltip(
+                `<div>
+                     parkingi_1017 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_596d95948e9fd6bcc9002786314336fd.setIcon(icon_151f4ff16d11431c039ba1701124c7e1);
+            
+    
+            var marker_57fb9b67ef5f0dfaab01438acdea6172 = L.marker(
+                [51.197704, 16.155216],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_83bff92adea4b0d74b494170657dfcdc = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_931e77005c2df3e882aa27b99d584336 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c351b340c7f459b9f6558d1b24cb36b6 = $(`<div id="html_c351b340c7f459b9f6558d1b24cb36b6" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_286</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.197704<br>                 Lon: 16.155216             </div>             </div>`)[0];
+                popup_931e77005c2df3e882aa27b99d584336.setContent(html_c351b340c7f459b9f6558d1b24cb36b6);
+            
+        
+
+        marker_57fb9b67ef5f0dfaab01438acdea6172.bindPopup(popup_931e77005c2df3e882aa27b99d584336)
+        ;
+
+        
+    
+    
+            marker_57fb9b67ef5f0dfaab01438acdea6172.bindTooltip(
+                `<div>
+                     parkingi_286 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_57fb9b67ef5f0dfaab01438acdea6172.setIcon(icon_83bff92adea4b0d74b494170657dfcdc);
+            
+    
+            var marker_ab38356a9ada506f97db67d307550c98 = L.marker(
+                [51.190085, 16.151799],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_ef2caf34b69d7dc832136b625fe491a2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_128d9517f806b277d0825b44aaf00cc0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_70916b83b688ad8b8bdb2d423a6903d0 = $(`<div id="html_70916b83b688ad8b8bdb2d423a6903d0" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_566</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.190085<br>                 Lon: 16.151799             </div>             </div>`)[0];
+                popup_128d9517f806b277d0825b44aaf00cc0.setContent(html_70916b83b688ad8b8bdb2d423a6903d0);
+            
+        
+
+        marker_ab38356a9ada506f97db67d307550c98.bindPopup(popup_128d9517f806b277d0825b44aaf00cc0)
+        ;
+
+        
+    
+    
+            marker_ab38356a9ada506f97db67d307550c98.bindTooltip(
+                `<div>
+                     parkingi_566 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ab38356a9ada506f97db67d307550c98.setIcon(icon_ef2caf34b69d7dc832136b625fe491a2);
+            
+    
+            var marker_d4ff78ae2ace7ba9c06675172b691103 = L.marker(
+                [51.208187, 16.161547],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_8f62aab83fc5c05d8ebeaa4e61dbc3c1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c0ffce733b78c9fd12365cedd072ff43 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c0ab182d9115f57d5adc53214f45cc3c = $(`<div id="html_c0ab182d9115f57d5adc53214f45cc3c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_534</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.208187<br>                 Lon: 16.161547             </div>             </div>`)[0];
+                popup_c0ffce733b78c9fd12365cedd072ff43.setContent(html_c0ab182d9115f57d5adc53214f45cc3c);
+            
+        
+
+        marker_d4ff78ae2ace7ba9c06675172b691103.bindPopup(popup_c0ffce733b78c9fd12365cedd072ff43)
+        ;
+
+        
+    
+    
+            marker_d4ff78ae2ace7ba9c06675172b691103.bindTooltip(
+                `<div>
+                     parkingi_534 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d4ff78ae2ace7ba9c06675172b691103.setIcon(icon_8f62aab83fc5c05d8ebeaa4e61dbc3c1);
+            
+    
+            var marker_ecab75002969078d4a3a61d2aa5f6053 = L.marker(
+                [51.206753, 16.157389],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_08cd1db77eb8181ae0e10e6869e9a377 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5c8e1841b47fe0a172ffe89e067afc8d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5dcdc63cf560d362f9d22539c032a2b6 = $(`<div id="html_5dcdc63cf560d362f9d22539c032a2b6" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_783</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.206753<br>                 Lon: 16.157389             </div>             </div>`)[0];
+                popup_5c8e1841b47fe0a172ffe89e067afc8d.setContent(html_5dcdc63cf560d362f9d22539c032a2b6);
+            
+        
+
+        marker_ecab75002969078d4a3a61d2aa5f6053.bindPopup(popup_5c8e1841b47fe0a172ffe89e067afc8d)
+        ;
+
+        
+    
+    
+            marker_ecab75002969078d4a3a61d2aa5f6053.bindTooltip(
+                `<div>
+                     parkingi_783 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ecab75002969078d4a3a61d2aa5f6053.setIcon(icon_08cd1db77eb8181ae0e10e6869e9a377);
+            
+    
+            var marker_1b366794518b336b637e6544f21bd861 = L.marker(
+                [51.204856, 16.159698],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_e172e2bb6b3a55613628c62e5fa777aa = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d35a850d0a061e10e5abee378b6b4cb4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_92ad8268221276faf298b04c8272a4e9 = $(`<div id="html_92ad8268221276faf298b04c8272a4e9" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_149</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.204856<br>                 Lon: 16.159698             </div>             </div>`)[0];
+                popup_d35a850d0a061e10e5abee378b6b4cb4.setContent(html_92ad8268221276faf298b04c8272a4e9);
+            
+        
+
+        marker_1b366794518b336b637e6544f21bd861.bindPopup(popup_d35a850d0a061e10e5abee378b6b4cb4)
+        ;
+
+        
+    
+    
+            marker_1b366794518b336b637e6544f21bd861.bindTooltip(
+                `<div>
+                     parkingi_149 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1b366794518b336b637e6544f21bd861.setIcon(icon_e172e2bb6b3a55613628c62e5fa777aa);
+            
+    
+            var marker_a4c832c0ddff423fd26b2803e9598151 = L.marker(
+                [51.201067, 16.21078],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_cb8005f078d75385b2dc68290e3d6bee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_41b4dd40e4043968b2b53705a11a83a4 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b2cb8c946aad6b65bf07d2d074a77602 = $(`<div id="html_b2cb8c946aad6b65bf07d2d074a77602" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_227</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.201067<br>                 Lon: 16.210780             </div>             </div>`)[0];
+                popup_41b4dd40e4043968b2b53705a11a83a4.setContent(html_b2cb8c946aad6b65bf07d2d074a77602);
+            
+        
+
+        marker_a4c832c0ddff423fd26b2803e9598151.bindPopup(popup_41b4dd40e4043968b2b53705a11a83a4)
+        ;
+
+        
+    
+    
+            marker_a4c832c0ddff423fd26b2803e9598151.bindTooltip(
+                `<div>
+                     parkingi_227 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a4c832c0ddff423fd26b2803e9598151.setIcon(icon_cb8005f078d75385b2dc68290e3d6bee);
+            
+    
+            var marker_1966a74bd9274f94c15336fc9c30a18c = L.marker(
+                [51.204556, 16.214356],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_9cbef6f1e9433e9cfe6275929bb4b13c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b2b0ceead5ea9bf7c5e229b5122b8ecc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_63a9d16cec93721e954b29c3ad4605be = $(`<div id="html_63a9d16cec93721e954b29c3ad4605be" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_423</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.204556<br>                 Lon: 16.214356             </div>             </div>`)[0];
+                popup_b2b0ceead5ea9bf7c5e229b5122b8ecc.setContent(html_63a9d16cec93721e954b29c3ad4605be);
+            
+        
+
+        marker_1966a74bd9274f94c15336fc9c30a18c.bindPopup(popup_b2b0ceead5ea9bf7c5e229b5122b8ecc)
+        ;
+
+        
+    
+    
+            marker_1966a74bd9274f94c15336fc9c30a18c.bindTooltip(
+                `<div>
+                     parkingi_423 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1966a74bd9274f94c15336fc9c30a18c.setIcon(icon_9cbef6f1e9433e9cfe6275929bb4b13c);
+            
+    
+            var marker_6aedbe7164465462d16db6200ac7b3df = L.marker(
+                [51.204719, 16.150538],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_84f4c9a5c2d4ce50151cae4ca56ab1b3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dfe58bb09bad856e2ef75f28a4c66bef = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_72e2e9a5e35205fc3673b5c8a9b070d4 = $(`<div id="html_72e2e9a5e35205fc3673b5c8a9b070d4" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_357</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.204719<br>                 Lon: 16.150538             </div>             </div>`)[0];
+                popup_dfe58bb09bad856e2ef75f28a4c66bef.setContent(html_72e2e9a5e35205fc3673b5c8a9b070d4);
+            
+        
+
+        marker_6aedbe7164465462d16db6200ac7b3df.bindPopup(popup_dfe58bb09bad856e2ef75f28a4c66bef)
+        ;
+
+        
+    
+    
+            marker_6aedbe7164465462d16db6200ac7b3df.bindTooltip(
+                `<div>
+                     parkingi_357 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6aedbe7164465462d16db6200ac7b3df.setIcon(icon_84f4c9a5c2d4ce50151cae4ca56ab1b3);
+            
+    
+            var marker_00ba140d18fb629b66bfbc38b7f353c0 = L.marker(
+                [51.207167, 16.145562],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_4747a27e54fa29e53f56c942cf113038 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7a536094e978cc2933d00c50f1ef5189 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c2f1f40c432f425ee2ad8ab011e095ad = $(`<div id="html_c2f1f40c432f425ee2ad8ab011e095ad" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_332</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.207167<br>                 Lon: 16.145562             </div>             </div>`)[0];
+                popup_7a536094e978cc2933d00c50f1ef5189.setContent(html_c2f1f40c432f425ee2ad8ab011e095ad);
+            
+        
+
+        marker_00ba140d18fb629b66bfbc38b7f353c0.bindPopup(popup_7a536094e978cc2933d00c50f1ef5189)
+        ;
+
+        
+    
+    
+            marker_00ba140d18fb629b66bfbc38b7f353c0.bindTooltip(
+                `<div>
+                     parkingi_332 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_00ba140d18fb629b66bfbc38b7f353c0.setIcon(icon_4747a27e54fa29e53f56c942cf113038);
+            
+    
+            var marker_31b45c0697fd72cdeec1f9a41468d8a9 = L.marker(
+                [51.211266, 16.162649],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_1e48a9dfff8bc0ae1a02d4517e34eb75 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b03c718f31c3b7a344cc1e5adb8ce99a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_708a3ce46c433579810d38bcec140e83 = $(`<div id="html_708a3ce46c433579810d38bcec140e83" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_78</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.211266<br>                 Lon: 16.162649             </div>             </div>`)[0];
+                popup_b03c718f31c3b7a344cc1e5adb8ce99a.setContent(html_708a3ce46c433579810d38bcec140e83);
+            
+        
+
+        marker_31b45c0697fd72cdeec1f9a41468d8a9.bindPopup(popup_b03c718f31c3b7a344cc1e5adb8ce99a)
+        ;
+
+        
+    
+    
+            marker_31b45c0697fd72cdeec1f9a41468d8a9.bindTooltip(
+                `<div>
+                     parkingi_78 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_31b45c0697fd72cdeec1f9a41468d8a9.setIcon(icon_1e48a9dfff8bc0ae1a02d4517e34eb75);
+            
+    
+            var marker_f3b1df24e9039bb6ada10c87c96af0c7 = L.marker(
+                [51.210428, 16.165584],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_36cbbd1e3a8e6a774db7bc95d46b401d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_48b5a3606fbb928cd0dda4378e56d7f3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8352566145b10ccad0a7cf9f448538df = $(`<div id="html_8352566145b10ccad0a7cf9f448538df" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_329</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.210428<br>                 Lon: 16.165584             </div>             </div>`)[0];
+                popup_48b5a3606fbb928cd0dda4378e56d7f3.setContent(html_8352566145b10ccad0a7cf9f448538df);
+            
+        
+
+        marker_f3b1df24e9039bb6ada10c87c96af0c7.bindPopup(popup_48b5a3606fbb928cd0dda4378e56d7f3)
+        ;
+
+        
+    
+    
+            marker_f3b1df24e9039bb6ada10c87c96af0c7.bindTooltip(
+                `<div>
+                     parkingi_329 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f3b1df24e9039bb6ada10c87c96af0c7.setIcon(icon_36cbbd1e3a8e6a774db7bc95d46b401d);
+            
+    
+            var marker_f5f05a71f85732d3389bcd54ab299f7d = L.marker(
+                [51.209956, 16.175539],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_af21bc34a102e7532a1ac11dd39d951f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_40b977a5c58ac8276a1e979c5f74ebd1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1842a0ea3262fa0e49820217dc9d6238 = $(`<div id="html_1842a0ea3262fa0e49820217dc9d6238" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_521</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.209956<br>                 Lon: 16.175539             </div>             </div>`)[0];
+                popup_40b977a5c58ac8276a1e979c5f74ebd1.setContent(html_1842a0ea3262fa0e49820217dc9d6238);
+            
+        
+
+        marker_f5f05a71f85732d3389bcd54ab299f7d.bindPopup(popup_40b977a5c58ac8276a1e979c5f74ebd1)
+        ;
+
+        
+    
+    
+            marker_f5f05a71f85732d3389bcd54ab299f7d.bindTooltip(
+                `<div>
+                     parkingi_521 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f5f05a71f85732d3389bcd54ab299f7d.setIcon(icon_af21bc34a102e7532a1ac11dd39d951f);
+            
+    
+            var marker_00b70bbd842eb5a65f727ac7c41b134f = L.marker(
+                [51.199044, 16.21891],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_2318fc9020becc496cf023c52a93a620 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b825836782d3479bd1a2d5dfadac192d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_471300602ff4c7388203b319e487b231 = $(`<div id="html_471300602ff4c7388203b319e487b231" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_723</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.199044<br>                 Lon: 16.218910             </div>             </div>`)[0];
+                popup_b825836782d3479bd1a2d5dfadac192d.setContent(html_471300602ff4c7388203b319e487b231);
+            
+        
+
+        marker_00b70bbd842eb5a65f727ac7c41b134f.bindPopup(popup_b825836782d3479bd1a2d5dfadac192d)
+        ;
+
+        
+    
+    
+            marker_00b70bbd842eb5a65f727ac7c41b134f.bindTooltip(
+                `<div>
+                     parkingi_723 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_00b70bbd842eb5a65f727ac7c41b134f.setIcon(icon_2318fc9020becc496cf023c52a93a620);
+            
+    
+            var marker_238f4c75606bf5092c7e70cd7069264c = L.marker(
+                [51.21667, 16.168562],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_884ec2ee25ec9eff141d78c3737ae1db = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8cd4922200f4178532c922fd8b2496bb = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6ba9bd0ac89c5f916c2a233d6db65a65 = $(`<div id="html_6ba9bd0ac89c5f916c2a233d6db65a65" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_741</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.216670<br>                 Lon: 16.168562             </div>             </div>`)[0];
+                popup_8cd4922200f4178532c922fd8b2496bb.setContent(html_6ba9bd0ac89c5f916c2a233d6db65a65);
+            
+        
+
+        marker_238f4c75606bf5092c7e70cd7069264c.bindPopup(popup_8cd4922200f4178532c922fd8b2496bb)
+        ;
+
+        
+    
+    
+            marker_238f4c75606bf5092c7e70cd7069264c.bindTooltip(
+                `<div>
+                     parkingi_741 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_238f4c75606bf5092c7e70cd7069264c.setIcon(icon_884ec2ee25ec9eff141d78c3737ae1db);
+            
+    
+            var marker_bc7d7f73139b71a90cf5d7134fd7c9b9 = L.marker(
+                [51.192717, 16.129106],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_c178f39f24b1a94549b7a2189239a3b3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1daf969a24cbcddb30a482e88efbfe6c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cba076aab3c7b868ebd45636ca388183 = $(`<div id="html_cba076aab3c7b868ebd45636ca388183" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_631</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.192717<br>                 Lon: 16.129106             </div>             </div>`)[0];
+                popup_1daf969a24cbcddb30a482e88efbfe6c.setContent(html_cba076aab3c7b868ebd45636ca388183);
+            
+        
+
+        marker_bc7d7f73139b71a90cf5d7134fd7c9b9.bindPopup(popup_1daf969a24cbcddb30a482e88efbfe6c)
+        ;
+
+        
+    
+    
+            marker_bc7d7f73139b71a90cf5d7134fd7c9b9.bindTooltip(
+                `<div>
+                     parkingi_631 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bc7d7f73139b71a90cf5d7134fd7c9b9.setIcon(icon_c178f39f24b1a94549b7a2189239a3b3);
+            
+    
+            var marker_2335029fcfb13f672e198c6dc9778301 = L.marker(
+                [51.189793, 16.184441],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_8f3edb3e4f2eb08f11f6d0046db19987 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b2765709a9b35cabb9d8cecb71154319 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2951fe0ce51991b715d8a490bf2af994 = $(`<div id="html_2951fe0ce51991b715d8a490bf2af994" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_608</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.189793<br>                 Lon: 16.184441             </div>             </div>`)[0];
+                popup_b2765709a9b35cabb9d8cecb71154319.setContent(html_2951fe0ce51991b715d8a490bf2af994);
+            
+        
+
+        marker_2335029fcfb13f672e198c6dc9778301.bindPopup(popup_b2765709a9b35cabb9d8cecb71154319)
+        ;
+
+        
+    
+    
+            marker_2335029fcfb13f672e198c6dc9778301.bindTooltip(
+                `<div>
+                     parkingi_608 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2335029fcfb13f672e198c6dc9778301.setIcon(icon_8f3edb3e4f2eb08f11f6d0046db19987);
+            
+    
+            var marker_654804bad5451f2283431edce2b484d0 = L.marker(
+                [51.186447, 16.172908],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_dcc9e568c8671707a36e4a78bddd1051 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b9405fdfb3854ef2af7105b64f7795b9 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_8a2fbf8b493e4ce3be02d2821ec5b0f0 = $(`<div id="html_8a2fbf8b493e4ce3be02d2821ec5b0f0" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_797</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.186447<br>                 Lon: 16.172908             </div>             </div>`)[0];
+                popup_b9405fdfb3854ef2af7105b64f7795b9.setContent(html_8a2fbf8b493e4ce3be02d2821ec5b0f0);
+            
+        
+
+        marker_654804bad5451f2283431edce2b484d0.bindPopup(popup_b9405fdfb3854ef2af7105b64f7795b9)
+        ;
+
+        
+    
+    
+            marker_654804bad5451f2283431edce2b484d0.bindTooltip(
+                `<div>
+                     parkingi_797 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_654804bad5451f2283431edce2b484d0.setIcon(icon_dcc9e568c8671707a36e4a78bddd1051);
+            
+    
+            var marker_23b868d800299c060e39a674551da435 = L.marker(
+                [51.208446, 16.185302],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_ee2707e127d2bacf79d61adfe3563778 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c1491bbee2d6e209e33edfeae6ae99f8 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_34ab80034ef18610b527fd5a58b8da24 = $(`<div id="html_34ab80034ef18610b527fd5a58b8da24" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_66</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.208446<br>                 Lon: 16.185302             </div>             </div>`)[0];
+                popup_c1491bbee2d6e209e33edfeae6ae99f8.setContent(html_34ab80034ef18610b527fd5a58b8da24);
+            
+        
+
+        marker_23b868d800299c060e39a674551da435.bindPopup(popup_c1491bbee2d6e209e33edfeae6ae99f8)
+        ;
+
+        
+    
+    
+            marker_23b868d800299c060e39a674551da435.bindTooltip(
+                `<div>
+                     parkingi_66 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_23b868d800299c060e39a674551da435.setIcon(icon_ee2707e127d2bacf79d61adfe3563778);
+            
+    
+            var marker_f79bfed3b9207a11afaa2e0cc21860c4 = L.marker(
+                [51.208378, 16.214855],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_ec7e1d2b89aadf7e6250b08bcff1da2d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_16e31bac52837ab4f47e4e8b5f99ebcc = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_891a02dc08643f7af3210a5ad5676b0b = $(`<div id="html_891a02dc08643f7af3210a5ad5676b0b" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_256</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.208378<br>                 Lon: 16.214855             </div>             </div>`)[0];
+                popup_16e31bac52837ab4f47e4e8b5f99ebcc.setContent(html_891a02dc08643f7af3210a5ad5676b0b);
+            
+        
+
+        marker_f79bfed3b9207a11afaa2e0cc21860c4.bindPopup(popup_16e31bac52837ab4f47e4e8b5f99ebcc)
+        ;
+
+        
+    
+    
+            marker_f79bfed3b9207a11afaa2e0cc21860c4.bindTooltip(
+                `<div>
+                     parkingi_256 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f79bfed3b9207a11afaa2e0cc21860c4.setIcon(icon_ec7e1d2b89aadf7e6250b08bcff1da2d);
+            
+    
+            var marker_5d61191cbf511e1aee27eee09183649f = L.marker(
+                [51.212833, 16.166039],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_764a504b9c858875550f7c454d83f353 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2767425c88889a3f9e616ddd4e6d62d6 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_b7119c7b220231ae6475630d15822df8 = $(`<div id="html_b7119c7b220231ae6475630d15822df8" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_1062</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.212833<br>                 Lon: 16.166039             </div>             </div>`)[0];
+                popup_2767425c88889a3f9e616ddd4e6d62d6.setContent(html_b7119c7b220231ae6475630d15822df8);
+            
+        
+
+        marker_5d61191cbf511e1aee27eee09183649f.bindPopup(popup_2767425c88889a3f9e616ddd4e6d62d6)
+        ;
+
+        
+    
+    
+            marker_5d61191cbf511e1aee27eee09183649f.bindTooltip(
+                `<div>
+                     parkingi_1062 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5d61191cbf511e1aee27eee09183649f.setIcon(icon_764a504b9c858875550f7c454d83f353);
+            
+    
+            var marker_02629d91eb74fbf51737b8dbb9fa92d5 = L.marker(
+                [51.208713, 16.192375],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_9a55b153b9b9398e780e86addface61f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_aa21d8633803555151b119e819d6556a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c461e629c818c30b67cf75c34338857b = $(`<div id="html_c461e629c818c30b67cf75c34338857b" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_109</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.208713<br>                 Lon: 16.192375             </div>             </div>`)[0];
+                popup_aa21d8633803555151b119e819d6556a.setContent(html_c461e629c818c30b67cf75c34338857b);
+            
+        
+
+        marker_02629d91eb74fbf51737b8dbb9fa92d5.bindPopup(popup_aa21d8633803555151b119e819d6556a)
+        ;
+
+        
+    
+    
+            marker_02629d91eb74fbf51737b8dbb9fa92d5.bindTooltip(
+                `<div>
+                     parkingi_109 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_02629d91eb74fbf51737b8dbb9fa92d5.setIcon(icon_9a55b153b9b9398e780e86addface61f);
+            
+    
+            var marker_4b3d46ee54d28cd02004bb4575056e49 = L.marker(
+                [51.202501, 16.161844],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_4db7f24bbb9dd5bebdd048e76fb1b50d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e1beb5a4b37e613bb67e41eec803662b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_243ffeea94a4c9dde4066a73d153bf35 = $(`<div id="html_243ffeea94a4c9dde4066a73d153bf35" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>parkingi_736</b><br>                 <i>Kategoria: parkingi - Legnica</i><br>                 <hr>                 Lat: 51.202501<br>                 Lon: 16.161844             </div>             </div>`)[0];
+                popup_e1beb5a4b37e613bb67e41eec803662b.setContent(html_243ffeea94a4c9dde4066a73d153bf35);
+            
+        
+
+        marker_4b3d46ee54d28cd02004bb4575056e49.bindPopup(popup_e1beb5a4b37e613bb67e41eec803662b)
+        ;
+
+        
+    
+    
+            marker_4b3d46ee54d28cd02004bb4575056e49.bindTooltip(
+                `<div>
+                     parkingi_736 (parkingi - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4b3d46ee54d28cd02004bb4575056e49.setIcon(icon_4db7f24bbb9dd5bebdd048e76fb1b50d);
+            
+    
+            var marker_b1c8535c069a51ead9cb4bfa0ba26b62 = L.marker(
+                [51.206687, 16.178676],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_15d41e5257167f62950446018b843f63 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d8340dad8f7b8bc1ce4cb8c57319d101 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ad26e76b241c2179fe8d64e61cc02846 = $(`<div id="html_ad26e76b241c2179fe8d64e61cc02846" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Had Food</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.206687<br>                 Lon: 16.178676             </div>             </div>`)[0];
+                popup_d8340dad8f7b8bc1ce4cb8c57319d101.setContent(html_ad26e76b241c2179fe8d64e61cc02846);
+            
+        
+
+        marker_b1c8535c069a51ead9cb4bfa0ba26b62.bindPopup(popup_d8340dad8f7b8bc1ce4cb8c57319d101)
+        ;
+
+        
+    
+    
+            marker_b1c8535c069a51ead9cb4bfa0ba26b62.bindTooltip(
+                `<div>
+                     Had Food (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b1c8535c069a51ead9cb4bfa0ba26b62.setIcon(icon_15d41e5257167f62950446018b843f63);
+            
+    
+            var marker_dec33df673d00d622f4396f0b01dedda = L.marker(
+                [51.209543, 16.167775],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_8e4898a4d53ce97aff0ccad4d43378de = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ad279b65813bb13ed32cf3cf79e10fee = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ce0ace51486dd21ccb7132d3641b9b98 = $(`<div id="html_ce0ace51486dd21ccb7132d3641b9b98" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Lara Döner Kebab</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.209543<br>                 Lon: 16.167775             </div>             </div>`)[0];
+                popup_ad279b65813bb13ed32cf3cf79e10fee.setContent(html_ce0ace51486dd21ccb7132d3641b9b98);
+            
+        
+
+        marker_dec33df673d00d622f4396f0b01dedda.bindPopup(popup_ad279b65813bb13ed32cf3cf79e10fee)
+        ;
+
+        
+    
+    
+            marker_dec33df673d00d622f4396f0b01dedda.bindTooltip(
+                `<div>
+                     Lara Döner Kebab (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_dec33df673d00d622f4396f0b01dedda.setIcon(icon_8e4898a4d53ce97aff0ccad4d43378de);
+            
+    
+            var marker_5b3ea6b66416b2b7ef3a852a98ad5653 = L.marker(
+                [51.207595, 16.19005],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_5d6fff42259220cc85555b505be7b8eb = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_99fe9c80294e219114b0ff732fd17faa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e59e34a8de294e9a6e0125e9596d4daf = $(`<div id="html_e59e34a8de294e9a6e0125e9596d4daf" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Vikos</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.207595<br>                 Lon: 16.190050             </div>             </div>`)[0];
+                popup_99fe9c80294e219114b0ff732fd17faa.setContent(html_e59e34a8de294e9a6e0125e9596d4daf);
+            
+        
+
+        marker_5b3ea6b66416b2b7ef3a852a98ad5653.bindPopup(popup_99fe9c80294e219114b0ff732fd17faa)
+        ;
+
+        
+    
+    
+            marker_5b3ea6b66416b2b7ef3a852a98ad5653.bindTooltip(
+                `<div>
+                     Vikos (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5b3ea6b66416b2b7ef3a852a98ad5653.setIcon(icon_5d6fff42259220cc85555b505be7b8eb);
+            
+    
+            var marker_a09c7f3580e6b023584e33132eab8e92 = L.marker(
+                [51.198507, 16.155404],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_0c8bdc003ec6680de3492584812cc906 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_33b85703ff7d4f37ddb9625f3944494a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_015cf078ec8f7372f8245c773710d90b = $(`<div id="html_015cf078ec8f7372f8245c773710d90b" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Pierogeria</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.198507<br>                 Lon: 16.155404             </div>             </div>`)[0];
+                popup_33b85703ff7d4f37ddb9625f3944494a.setContent(html_015cf078ec8f7372f8245c773710d90b);
+            
+        
+
+        marker_a09c7f3580e6b023584e33132eab8e92.bindPopup(popup_33b85703ff7d4f37ddb9625f3944494a)
+        ;
+
+        
+    
+    
+            marker_a09c7f3580e6b023584e33132eab8e92.bindTooltip(
+                `<div>
+                     Pierogeria (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a09c7f3580e6b023584e33132eab8e92.setIcon(icon_0c8bdc003ec6680de3492584812cc906);
+            
+    
+            var marker_66af9d32be28b5613a8f3e85431f5210 = L.marker(
+                [51.189538, 16.154354],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_e5fcbe10a91a4bbd33f2371b691d519d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b79aa4c254a658a2703784fd53f466ca = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_fa843ee42189f4d040a7ca1c0d7134a4 = $(`<div id="html_fa843ee42189f4d040a7ca1c0d7134a4" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Karczma na skarpie</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.189538<br>                 Lon: 16.154354             </div>             </div>`)[0];
+                popup_b79aa4c254a658a2703784fd53f466ca.setContent(html_fa843ee42189f4d040a7ca1c0d7134a4);
+            
+        
+
+        marker_66af9d32be28b5613a8f3e85431f5210.bindPopup(popup_b79aa4c254a658a2703784fd53f466ca)
+        ;
+
+        
+    
+    
+            marker_66af9d32be28b5613a8f3e85431f5210.bindTooltip(
+                `<div>
+                     Karczma na skarpie (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_66af9d32be28b5613a8f3e85431f5210.setIcon(icon_e5fcbe10a91a4bbd33f2371b691d519d);
+            
+    
+            var marker_109e7fbef351222c190bac25523fe38b = L.marker(
+                [51.207895, 16.161058],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_18dd26214abc2d2c72382e617b59efe5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_550e152405610157a14ce1032f7026bd = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e199e0b10eae6eea67cab6af9bfd1030 = $(`<div id="html_e199e0b10eae6eea67cab6af9bfd1030" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Cyrus Kebab</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.207895<br>                 Lon: 16.161058             </div>             </div>`)[0];
+                popup_550e152405610157a14ce1032f7026bd.setContent(html_e199e0b10eae6eea67cab6af9bfd1030);
+            
+        
+
+        marker_109e7fbef351222c190bac25523fe38b.bindPopup(popup_550e152405610157a14ce1032f7026bd)
+        ;
+
+        
+    
+    
+            marker_109e7fbef351222c190bac25523fe38b.bindTooltip(
+                `<div>
+                     Cyrus Kebab (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_109e7fbef351222c190bac25523fe38b.setIcon(icon_18dd26214abc2d2c72382e617b59efe5);
+            
+    
+            var marker_d0b51592b8f6814ab9f4983f5fa40642 = L.marker(
+                [51.20706, 16.157035],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_36f61b156b00f9f7b3c14d8c7a226544 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_57d4a53179ee627380ea28a64589ea66 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4ecd6ac6250b704cb549e4a553ecab2e = $(`<div id="html_4ecd6ac6250b704cb549e4a553ecab2e" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Paradise Kebab</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.207060<br>                 Lon: 16.157035             </div>             </div>`)[0];
+                popup_57d4a53179ee627380ea28a64589ea66.setContent(html_4ecd6ac6250b704cb549e4a553ecab2e);
+            
+        
+
+        marker_d0b51592b8f6814ab9f4983f5fa40642.bindPopup(popup_57d4a53179ee627380ea28a64589ea66)
+        ;
+
+        
+    
+    
+            marker_d0b51592b8f6814ab9f4983f5fa40642.bindTooltip(
+                `<div>
+                     Paradise Kebab (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d0b51592b8f6814ab9f4983f5fa40642.setIcon(icon_36f61b156b00f9f7b3c14d8c7a226544);
+            
+    
+            var marker_f8f2ceedd12c0df0e349c4f541331e79 = L.marker(
+                [51.204434, 16.15986],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_6be0402a2a974f9ef348b652315b023a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a62ba10cb6c5f799f6a38df808f148c1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2725d7cf6b7304df9129ffba79f18473 = $(`<div id="html_2725d7cf6b7304df9129ffba79f18473" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Leo Kebab</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.204434<br>                 Lon: 16.159860             </div>             </div>`)[0];
+                popup_a62ba10cb6c5f799f6a38df808f148c1.setContent(html_2725d7cf6b7304df9129ffba79f18473);
+            
+        
+
+        marker_f8f2ceedd12c0df0e349c4f541331e79.bindPopup(popup_a62ba10cb6c5f799f6a38df808f148c1)
+        ;
+
+        
+    
+    
+            marker_f8f2ceedd12c0df0e349c4f541331e79.bindTooltip(
+                `<div>
+                     Leo Kebab (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f8f2ceedd12c0df0e349c4f541331e79.setIcon(icon_6be0402a2a974f9ef348b652315b023a);
+            
+    
+            var marker_232640b915dd95b2d374845cee0ea912 = L.marker(
+                [51.200999, 16.211019],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_ffc30951743d5ede4e366cf268edb062 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7d87bced310e81efa4d97588458280aa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0e7f5a7105df5e75ec256df804d36c64 = $(`<div id="html_0e7f5a7105df5e75ec256df804d36c64" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Pierogarnia u Reni</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.200999<br>                 Lon: 16.211019             </div>             </div>`)[0];
+                popup_7d87bced310e81efa4d97588458280aa.setContent(html_0e7f5a7105df5e75ec256df804d36c64);
+            
+        
+
+        marker_232640b915dd95b2d374845cee0ea912.bindPopup(popup_7d87bced310e81efa4d97588458280aa)
+        ;
+
+        
+    
+    
+            marker_232640b915dd95b2d374845cee0ea912.bindTooltip(
+                `<div>
+                     Pierogarnia u Reni (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_232640b915dd95b2d374845cee0ea912.setIcon(icon_ffc30951743d5ede4e366cf268edb062);
+            
+    
+            var marker_2b680cab844b2e75b003012abbe249b7 = L.marker(
+                [51.205121, 16.213082],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_6aaed8d64302961db96aca5aa514cd4d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7ee9e6629990a2463aa20dfffd711dc7 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a812e83b82dc520f2ab4c8207bdf1e13 = $(`<div id="html_a812e83b82dc520f2ab4c8207bdf1e13" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Capri</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.205121<br>                 Lon: 16.213082             </div>             </div>`)[0];
+                popup_7ee9e6629990a2463aa20dfffd711dc7.setContent(html_a812e83b82dc520f2ab4c8207bdf1e13);
+            
+        
+
+        marker_2b680cab844b2e75b003012abbe249b7.bindPopup(popup_7ee9e6629990a2463aa20dfffd711dc7)
+        ;
+
+        
+    
+    
+            marker_2b680cab844b2e75b003012abbe249b7.bindTooltip(
+                `<div>
+                     Capri (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2b680cab844b2e75b003012abbe249b7.setIcon(icon_6aaed8d64302961db96aca5aa514cd4d);
+            
+    
+            var marker_b6d228a372ccf3e727cfc4089c617c25 = L.marker(
+                [51.20432, 16.150693],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_f32add0d0e25402f9c9e0f4e8519562b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8006a3ed436f8df891dba014364619e0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_aaa6f737a55dce990125fcf798bc607a = $(`<div id="html_aaa6f737a55dce990125fcf798bc607a" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Pizzeria Caruzo</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.204320<br>                 Lon: 16.150693             </div>             </div>`)[0];
+                popup_8006a3ed436f8df891dba014364619e0.setContent(html_aaa6f737a55dce990125fcf798bc607a);
+            
+        
+
+        marker_b6d228a372ccf3e727cfc4089c617c25.bindPopup(popup_8006a3ed436f8df891dba014364619e0)
+        ;
+
+        
+    
+    
+            marker_b6d228a372ccf3e727cfc4089c617c25.bindTooltip(
+                `<div>
+                     Pizzeria Caruzo (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b6d228a372ccf3e727cfc4089c617c25.setIcon(icon_f32add0d0e25402f9c9e0f4e8519562b);
+            
+    
+            var marker_c7b8fc4a9a3a58bc1bf0e5d5df736e4b = L.marker(
+                [51.208825, 16.146878],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_4ae1e65c0cddc96a9387a4a342872b75 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f2f911e75c2beb6787607a7a6aaaab89 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2706e0bb190a464e480f79352514a65d = $(`<div id="html_2706e0bb190a464e480f79352514a65d" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>PIEKIELNA BABCIA Tex-Mex Bar</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.208825<br>                 Lon: 16.146878             </div>             </div>`)[0];
+                popup_f2f911e75c2beb6787607a7a6aaaab89.setContent(html_2706e0bb190a464e480f79352514a65d);
+            
+        
+
+        marker_c7b8fc4a9a3a58bc1bf0e5d5df736e4b.bindPopup(popup_f2f911e75c2beb6787607a7a6aaaab89)
+        ;
+
+        
+    
+    
+            marker_c7b8fc4a9a3a58bc1bf0e5d5df736e4b.bindTooltip(
+                `<div>
+                     PIEKIELNA BABCIA Tex-Mex Bar (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c7b8fc4a9a3a58bc1bf0e5d5df736e4b.setIcon(icon_4ae1e65c0cddc96a9387a4a342872b75);
+            
+    
+            var marker_62d1c28c998c45082c87c24a2e4297b5 = L.marker(
+                [51.212399, 16.159627],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_1e7f700d1629f50d386e6ba8d9311da1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ea43f6f8badd9a67676b0d3c85448e05 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_1111637ad155d13edcdf14c82ccf3430 = $(`<div id="html_1111637ad155d13edcdf14c82ccf3430" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>restauracja_37</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.212399<br>                 Lon: 16.159627             </div>             </div>`)[0];
+                popup_ea43f6f8badd9a67676b0d3c85448e05.setContent(html_1111637ad155d13edcdf14c82ccf3430);
+            
+        
+
+        marker_62d1c28c998c45082c87c24a2e4297b5.bindPopup(popup_ea43f6f8badd9a67676b0d3c85448e05)
+        ;
+
+        
+    
+    
+            marker_62d1c28c998c45082c87c24a2e4297b5.bindTooltip(
+                `<div>
+                     restauracja_37 (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_62d1c28c998c45082c87c24a2e4297b5.setIcon(icon_1e7f700d1629f50d386e6ba8d9311da1);
+            
+    
+            var marker_0a0f3bfd29c95538e0c4d27c1f63ccb5 = L.marker(
+                [51.210502, 16.165463],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_58bd7cabdcc6ec94992db19a9fa26dc8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_02300d66bb7e2c2be3e832a21e68bf0d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_7dbc8ff4f261a1598eb4e1f0e8b5626f = $(`<div id="html_7dbc8ff4f261a1598eb4e1f0e8b5626f" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Bar orientalny Dragon.</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.210502<br>                 Lon: 16.165463             </div>             </div>`)[0];
+                popup_02300d66bb7e2c2be3e832a21e68bf0d.setContent(html_7dbc8ff4f261a1598eb4e1f0e8b5626f);
+            
+        
+
+        marker_0a0f3bfd29c95538e0c4d27c1f63ccb5.bindPopup(popup_02300d66bb7e2c2be3e832a21e68bf0d)
+        ;
+
+        
+    
+    
+            marker_0a0f3bfd29c95538e0c4d27c1f63ccb5.bindTooltip(
+                `<div>
+                     Bar orientalny Dragon. (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0a0f3bfd29c95538e0c4d27c1f63ccb5.setIcon(icon_58bd7cabdcc6ec94992db19a9fa26dc8);
+            
+    
+            var marker_b5facd80b00601925caeb6cf5fe66d5b = L.marker(
+                [51.211699, 16.175192],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_e76f399321e52efa4a6d156ca4110869 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2fb6d3e2802e1a582027338946caa042 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5339413befe902bd8ec2ec5e675e405f = $(`<div id="html_5339413befe902bd8ec2ec5e675e405f" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Hallo Kebap</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.211699<br>                 Lon: 16.175192             </div>             </div>`)[0];
+                popup_2fb6d3e2802e1a582027338946caa042.setContent(html_5339413befe902bd8ec2ec5e675e405f);
+            
+        
+
+        marker_b5facd80b00601925caeb6cf5fe66d5b.bindPopup(popup_2fb6d3e2802e1a582027338946caa042)
+        ;
+
+        
+    
+    
+            marker_b5facd80b00601925caeb6cf5fe66d5b.bindTooltip(
+                `<div>
+                     Hallo Kebap (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b5facd80b00601925caeb6cf5fe66d5b.setIcon(icon_e76f399321e52efa4a6d156ca4110869);
+            
+    
+            var marker_1b9729cb0e09df0326f6992f213ae80f = L.marker(
+                [51.199325, 16.219392],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_e340649e1a4c6eea7c26445d922bfe0a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dd64a850bb569cb63dc0ff20be13cf8c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_597878fda2f8aadc0404d6b93bb150b4 = $(`<div id="html_597878fda2f8aadc0404d6b93bb150b4" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Pierogowa Sielanka z Magdą</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.199325<br>                 Lon: 16.219392             </div>             </div>`)[0];
+                popup_dd64a850bb569cb63dc0ff20be13cf8c.setContent(html_597878fda2f8aadc0404d6b93bb150b4);
+            
+        
+
+        marker_1b9729cb0e09df0326f6992f213ae80f.bindPopup(popup_dd64a850bb569cb63dc0ff20be13cf8c)
+        ;
+
+        
+    
+    
+            marker_1b9729cb0e09df0326f6992f213ae80f.bindTooltip(
+                `<div>
+                     Pierogowa Sielanka z Magdą (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1b9729cb0e09df0326f6992f213ae80f.setIcon(icon_e340649e1a4c6eea7c26445d922bfe0a);
+            
+    
+            var marker_5ccad20b89fdcbb33e0cb76a0dfd6038 = L.marker(
+                [51.217319, 16.173377],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_38b7c3aaa9728ca40bd62b30d5c28e0a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_bd8cd10a9d0626e5f20ad1b1fdddd0b5 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_80a07c61e01afb0d7cc9052a1f32136c = $(`<div id="html_80a07c61e01afb0d7cc9052a1f32136c" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Stacja Gliwicka</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.217319<br>                 Lon: 16.173377             </div>             </div>`)[0];
+                popup_bd8cd10a9d0626e5f20ad1b1fdddd0b5.setContent(html_80a07c61e01afb0d7cc9052a1f32136c);
+            
+        
+
+        marker_5ccad20b89fdcbb33e0cb76a0dfd6038.bindPopup(popup_bd8cd10a9d0626e5f20ad1b1fdddd0b5)
+        ;
+
+        
+    
+    
+            marker_5ccad20b89fdcbb33e0cb76a0dfd6038.bindTooltip(
+                `<div>
+                     Stacja Gliwicka (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5ccad20b89fdcbb33e0cb76a0dfd6038.setIcon(icon_38b7c3aaa9728ca40bd62b30d5c28e0a);
+            
+    
+            var marker_6f6eec44b1432a088fd838bb4e677c60 = L.marker(
+                [51.192913, 16.128966],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_91e6918eac4a9481646333c0afe79401 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d8fc18219bbceb02367a6e72a201158a = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_52aa164b0457f347c82dabf945d42256 = $(`<div id="html_52aa164b0457f347c82dabf945d42256" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Bafra Kebab</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.192913<br>                 Lon: 16.128966             </div>             </div>`)[0];
+                popup_d8fc18219bbceb02367a6e72a201158a.setContent(html_52aa164b0457f347c82dabf945d42256);
+            
+        
+
+        marker_6f6eec44b1432a088fd838bb4e677c60.bindPopup(popup_d8fc18219bbceb02367a6e72a201158a)
+        ;
+
+        
+    
+    
+            marker_6f6eec44b1432a088fd838bb4e677c60.bindTooltip(
+                `<div>
+                     Bafra Kebab (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6f6eec44b1432a088fd838bb4e677c60.setIcon(icon_91e6918eac4a9481646333c0afe79401);
+            
+    
+            var marker_de692f5ad5a457f1d566d73d5c0f6286 = L.marker(
+                [51.188438, 16.187376],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_b8e27c5f2609cff652989385c95412ae = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2ae26778bcdeeed16b690b6075356715 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c5115c23ff01d8d4619bebdde017f7dd = $(`<div id="html_c5115c23ff01d8d4619bebdde017f7dd" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Pizza Drive</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.188438<br>                 Lon: 16.187376             </div>             </div>`)[0];
+                popup_2ae26778bcdeeed16b690b6075356715.setContent(html_c5115c23ff01d8d4619bebdde017f7dd);
+            
+        
+
+        marker_de692f5ad5a457f1d566d73d5c0f6286.bindPopup(popup_2ae26778bcdeeed16b690b6075356715)
+        ;
+
+        
+    
+    
+            marker_de692f5ad5a457f1d566d73d5c0f6286.bindTooltip(
+                `<div>
+                     Pizza Drive (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_de692f5ad5a457f1d566d73d5c0f6286.setIcon(icon_b8e27c5f2609cff652989385c95412ae);
+            
+    
+            var marker_cf3efb2c7259c86f0fa47b1ceb00809f = L.marker(
+                [51.18873, 16.174916],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_61057adca639357eea1c4629e0933a62 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a582177e718476c9a381952eec5dbc80 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c441d951fdab5b879e50da2a023c5368 = $(`<div id="html_c441d951fdab5b879e50da2a023c5368" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>McDonald's</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.188730<br>                 Lon: 16.174916             </div>             </div>`)[0];
+                popup_a582177e718476c9a381952eec5dbc80.setContent(html_c441d951fdab5b879e50da2a023c5368);
+            
+        
+
+        marker_cf3efb2c7259c86f0fa47b1ceb00809f.bindPopup(popup_a582177e718476c9a381952eec5dbc80)
+        ;
+
+        
+    
+    
+            marker_cf3efb2c7259c86f0fa47b1ceb00809f.bindTooltip(
+                `<div>
+                     McDonald's (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_cf3efb2c7259c86f0fa47b1ceb00809f.setIcon(icon_61057adca639357eea1c4629e0933a62);
+            
+    
+            var marker_35273ba6737bad8f3b2f290e0d57c6ea = L.marker(
+                [51.209666, 16.186915],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_65f2985e5b26c69b2de1b9c39374c621 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fd5ce95248b0cae0bfc285efa8a8410b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_6ba16ae99e31ec8f64998d2dfa215ae1 = $(`<div id="html_6ba16ae99e31ec8f64998d2dfa215ae1" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>AM AM Kebab</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.209666<br>                 Lon: 16.186915             </div>             </div>`)[0];
+                popup_fd5ce95248b0cae0bfc285efa8a8410b.setContent(html_6ba16ae99e31ec8f64998d2dfa215ae1);
+            
+        
+
+        marker_35273ba6737bad8f3b2f290e0d57c6ea.bindPopup(popup_fd5ce95248b0cae0bfc285efa8a8410b)
+        ;
+
+        
+    
+    
+            marker_35273ba6737bad8f3b2f290e0d57c6ea.bindTooltip(
+                `<div>
+                     AM AM Kebab (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_35273ba6737bad8f3b2f290e0d57c6ea.setIcon(icon_65f2985e5b26c69b2de1b9c39374c621);
+            
+    
+            var marker_46eee4edc0d2887bc707e16a0616824a = L.marker(
+                [51.207844, 16.213745],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_70eef82fecc00ae552550afb6e6a778e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fdec840a7ead2234232e7878604fe2f0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_464f39ee39e66071cad0122b4d07c389 = $(`<div id="html_464f39ee39e66071cad0122b4d07c389" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Świat Pierogów</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.207844<br>                 Lon: 16.213745             </div>             </div>`)[0];
+                popup_fdec840a7ead2234232e7878604fe2f0.setContent(html_464f39ee39e66071cad0122b4d07c389);
+            
+        
+
+        marker_46eee4edc0d2887bc707e16a0616824a.bindPopup(popup_fdec840a7ead2234232e7878604fe2f0)
+        ;
+
+        
+    
+    
+            marker_46eee4edc0d2887bc707e16a0616824a.bindTooltip(
+                `<div>
+                     Świat Pierogów (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_46eee4edc0d2887bc707e16a0616824a.setIcon(icon_70eef82fecc00ae552550afb6e6a778e);
+            
+    
+            var marker_e100452f4aba014e076d1372e0c02737 = L.marker(
+                [51.212291, 16.167316],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_6027938a4c7380e4b525276b72558af5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_34bd74125542cba7e666bb7b57506d77 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a9e0cc7db0c3ad2b49f442993d104c73 = $(`<div id="html_a9e0cc7db0c3ad2b49f442993d104c73" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Subway</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.212291<br>                 Lon: 16.167316             </div>             </div>`)[0];
+                popup_34bd74125542cba7e666bb7b57506d77.setContent(html_a9e0cc7db0c3ad2b49f442993d104c73);
+            
+        
+
+        marker_e100452f4aba014e076d1372e0c02737.bindPopup(popup_34bd74125542cba7e666bb7b57506d77)
+        ;
+
+        
+    
+    
+            marker_e100452f4aba014e076d1372e0c02737.bindTooltip(
+                `<div>
+                     Subway (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e100452f4aba014e076d1372e0c02737.setIcon(icon_6027938a4c7380e4b525276b72558af5);
+            
+    
+            var marker_118eb22c40dbdd9866df5868ef2f5ff4 = L.marker(
+                [51.210059, 16.192967],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_2e91ad784abc8b218e270661d945af96 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7dab78e4606d5d2b568ef9de9cd7d780 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_2fbdc7c862980921853e827da40d8dd5 = $(`<div id="html_2fbdc7c862980921853e827da40d8dd5" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Ha-Noi</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.210059<br>                 Lon: 16.192967             </div>             </div>`)[0];
+                popup_7dab78e4606d5d2b568ef9de9cd7d780.setContent(html_2fbdc7c862980921853e827da40d8dd5);
+            
+        
+
+        marker_118eb22c40dbdd9866df5868ef2f5ff4.bindPopup(popup_7dab78e4606d5d2b568ef9de9cd7d780)
+        ;
+
+        
+    
+    
+            marker_118eb22c40dbdd9866df5868ef2f5ff4.bindTooltip(
+                `<div>
+                     Ha-Noi (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_118eb22c40dbdd9866df5868ef2f5ff4.setIcon(icon_2e91ad784abc8b218e270661d945af96);
+            
+    
+            var marker_6755510a8b4872da485eebc89f89f593 = L.marker(
+                [51.200607, 16.159502],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var icon_08ad6167fa36807fdc9cd1b37cb0cd91 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b305173a4bb6aff89513770f36531f9d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_27ce338cbc2c538f671b818f66a91ead = $(`<div id="html_27ce338cbc2c538f671b818f66a91ead" style="width: 100.0%; height: 100.0%;">             <div style="font-family: Arial, sans-serif;">                 <b>Nogor Kebab</b><br>                 <i>Kategoria: restauracja - Legnica</i><br>                 <hr>                 Lat: 51.200607<br>                 Lon: 16.159502             </div>             </div>`)[0];
+                popup_b305173a4bb6aff89513770f36531f9d.setContent(html_27ce338cbc2c538f671b818f66a91ead);
+            
+        
+
+        marker_6755510a8b4872da485eebc89f89f593.bindPopup(popup_b305173a4bb6aff89513770f36531f9d)
+        ;
+
+        
+    
+    
+            marker_6755510a8b4872da485eebc89f89f593.bindTooltip(
+                `<div>
+                     Nogor Kebab (restauracja - Legnica)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_6755510a8b4872da485eebc89f89f593.setIcon(icon_08ad6167fa36807fdc9cd1b37cb0cd91);
+            
+    
+            var circle_ff1a7202aacf5ea6c3ebf8e29449dde5 = L.circle(
+                [51.206599499999996, 16.178870500000002],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_0e1ddebbc2514c024816a9ce98e7d785 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_333f10249cab653f9f6567d91466480b = $(`<div id="html_333f10249cab653f9f6567d91466480b" style="width: 100.0%; height: 100.0%;"><b>Klaster #1</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_0e1ddebbc2514c024816a9ce98e7d785.setContent(html_333f10249cab653f9f6567d91466480b);
+            
+        
+
+        circle_ff1a7202aacf5ea6c3ebf8e29449dde5.bindPopup(popup_0e1ddebbc2514c024816a9ce98e7d785)
+        ;
+
+        
+    
+    
+            var marker_8ef1c51b952e5ac5ff858fcf8b15b495 = L.marker(
+                [51.206599499999996, 16.178870500000002],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_ae07c6b8771eaa72fda5ce4c99ee039d = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e1\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_a129f5e2420d259ca62b68044928ac2c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d1d40cca6bc5432fb0c6f6f3077b2d35 = $(`<div id="html_d1d40cca6bc5432fb0c6f6f3077b2d35" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.206599499999996,16.178870500000002" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_a129f5e2420d259ca62b68044928ac2c.setContent(html_d1d40cca6bc5432fb0c6f6f3077b2d35);
+            
+        
+
+        marker_8ef1c51b952e5ac5ff858fcf8b15b495.bindPopup(popup_a129f5e2420d259ca62b68044928ac2c)
+        ;
+
+        
+    
+    
+                marker_8ef1c51b952e5ac5ff858fcf8b15b495.setIcon(div_icon_ae07c6b8771eaa72fda5ce4c99ee039d);
+            
+    
+            var circle_4cb07c79c4ecb7f1aecbeb2fecf27724 = L.circle(
+                [51.209098999999995, 16.168276],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_cbdd11bfc905e9adb7e8ad41a9253627 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c865b95968aea1cde1c34cfc615da635 = $(`<div id="html_c865b95968aea1cde1c34cfc615da635" style="width: 100.0%; height: 100.0%;"><b>Klaster #2</b><br>Kategorie: restauracja - Legnica, parkingi - Legnica<br>Liczba: 2</div>`)[0];
+                popup_cbdd11bfc905e9adb7e8ad41a9253627.setContent(html_c865b95968aea1cde1c34cfc615da635);
+            
+        
+
+        circle_4cb07c79c4ecb7f1aecbeb2fecf27724.bindPopup(popup_cbdd11bfc905e9adb7e8ad41a9253627)
+        ;
+
+        
+    
+    
+            var marker_1c032437447e3f33709042d3977aa594 = L.marker(
+                [51.209098999999995, 16.168276],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_f8c130c9d3d4d9b63ee6cedc31d7cb91 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e2\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_3738c2b40200823ef5ad7a0776a14c5b = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f12897c7c93e0e9c4dd4133433f06430 = $(`<div id="html_f12897c7c93e0e9c4dd4133433f06430" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.209098999999995,16.168276" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_3738c2b40200823ef5ad7a0776a14c5b.setContent(html_f12897c7c93e0e9c4dd4133433f06430);
+            
+        
+
+        marker_1c032437447e3f33709042d3977aa594.bindPopup(popup_3738c2b40200823ef5ad7a0776a14c5b)
+        ;
+
+        
+    
+    
+                marker_1c032437447e3f33709042d3977aa594.setIcon(div_icon_f8c130c9d3d4d9b63ee6cedc31d7cb91);
+            
+    
+            var circle_826e6b6292aa2edd9133dd642d420f4a = L.circle(
+                [51.2074065, 16.189816999999998],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_af7fefc801220c77ac9f3ca34a957509 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f3f3600d273f329981dccd4015f80de8 = $(`<div id="html_f3f3600d273f329981dccd4015f80de8" style="width: 100.0%; height: 100.0%;"><b>Klaster #3</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_af7fefc801220c77ac9f3ca34a957509.setContent(html_f3f3600d273f329981dccd4015f80de8);
+            
+        
+
+        circle_826e6b6292aa2edd9133dd642d420f4a.bindPopup(popup_af7fefc801220c77ac9f3ca34a957509)
+        ;
+
+        
+    
+    
+            var marker_52a5d0ebe6519833c8db4ae605138dac = L.marker(
+                [51.2074065, 16.189816999999998],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_9247fc64d592b1715f2903509286b8a7 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e3\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_6214bbb158e68973375108742d42a180 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_0fefc308192844cbaf6599abf89dd6fa = $(`<div id="html_0fefc308192844cbaf6599abf89dd6fa" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.2074065,16.189816999999998" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_6214bbb158e68973375108742d42a180.setContent(html_0fefc308192844cbaf6599abf89dd6fa);
+            
+        
+
+        marker_52a5d0ebe6519833c8db4ae605138dac.bindPopup(popup_6214bbb158e68973375108742d42a180)
+        ;
+
+        
+    
+    
+                marker_52a5d0ebe6519833c8db4ae605138dac.setIcon(div_icon_9247fc64d592b1715f2903509286b8a7);
+            
+    
+            var circle_59bff061188f4560249f4faa11405209 = L.circle(
+                [51.1981055, 16.15531],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_0c4a00943701e47a4dccbcb1dc751453 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_322aeb33ad67483e7af561b57b9988d0 = $(`<div id="html_322aeb33ad67483e7af561b57b9988d0" style="width: 100.0%; height: 100.0%;"><b>Klaster #4</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_0c4a00943701e47a4dccbcb1dc751453.setContent(html_322aeb33ad67483e7af561b57b9988d0);
+            
+        
+
+        circle_59bff061188f4560249f4faa11405209.bindPopup(popup_0c4a00943701e47a4dccbcb1dc751453)
+        ;
+
+        
+    
+    
+            var marker_97d731ed4fd1e0cf32823c70631326e2 = L.marker(
+                [51.1981055, 16.15531],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_30587e062f0a4a625ca0d0d4a790c601 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e4\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_b995ba6fbd206195a593a47fbd3de7ae = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cbeb34d5ad4793fd692148941cb3b130 = $(`<div id="html_cbeb34d5ad4793fd692148941cb3b130" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.1981055,16.15531" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_b995ba6fbd206195a593a47fbd3de7ae.setContent(html_cbeb34d5ad4793fd692148941cb3b130);
+            
+        
+
+        marker_97d731ed4fd1e0cf32823c70631326e2.bindPopup(popup_b995ba6fbd206195a593a47fbd3de7ae)
+        ;
+
+        
+    
+    
+                marker_97d731ed4fd1e0cf32823c70631326e2.setIcon(div_icon_30587e062f0a4a625ca0d0d4a790c601);
+            
+    
+            var circle_b00a214ee27d8784c6473d95858d3aa4 = L.circle(
+                [51.189811500000005, 16.1530765],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_7b93f8b7b4b2064932148ee68e6813a3 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_5d1bf320e474bd13f24e037616479939 = $(`<div id="html_5d1bf320e474bd13f24e037616479939" style="width: 100.0%; height: 100.0%;"><b>Klaster #5</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_7b93f8b7b4b2064932148ee68e6813a3.setContent(html_5d1bf320e474bd13f24e037616479939);
+            
+        
+
+        circle_b00a214ee27d8784c6473d95858d3aa4.bindPopup(popup_7b93f8b7b4b2064932148ee68e6813a3)
+        ;
+
+        
+    
+    
+            var marker_0937523d1c157330271a23dede28101f = L.marker(
+                [51.189811500000005, 16.1530765],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_8acda078f86100d06fcd6524f842e870 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e5\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_cc947b37c3a7002f657d34ddb4737ac0 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_3f841148b9e800204210e2b749bc9e87 = $(`<div id="html_3f841148b9e800204210e2b749bc9e87" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.189811500000005,16.1530765" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_cc947b37c3a7002f657d34ddb4737ac0.setContent(html_3f841148b9e800204210e2b749bc9e87);
+            
+        
+
+        marker_0937523d1c157330271a23dede28101f.bindPopup(popup_cc947b37c3a7002f657d34ddb4737ac0)
+        ;
+
+        
+    
+    
+                marker_0937523d1c157330271a23dede28101f.setIcon(div_icon_8acda078f86100d06fcd6524f842e870);
+            
+    
+            var circle_b4d0d88f91230d2ea33c905f14ef0699 = L.circle(
+                [51.208041, 16.161302499999998],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_2e2fe59ab3015702d5a8fc263bc8e29d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4f928321e41c5c760c489b87720c244a = $(`<div id="html_4f928321e41c5c760c489b87720c244a" style="width: 100.0%; height: 100.0%;"><b>Klaster #6</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_2e2fe59ab3015702d5a8fc263bc8e29d.setContent(html_4f928321e41c5c760c489b87720c244a);
+            
+        
+
+        circle_b4d0d88f91230d2ea33c905f14ef0699.bindPopup(popup_2e2fe59ab3015702d5a8fc263bc8e29d)
+        ;
+
+        
+    
+    
+            var marker_cffe5c5466340fc28996677ff9fc1be8 = L.marker(
+                [51.208041, 16.161302499999998],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_32635a3ddf35f351d5516654589b53bf = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e6\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_c32466f3ae659cbb7b6e1e0531712865 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e5d6b8e14653305154d59cce483b3e19 = $(`<div id="html_e5d6b8e14653305154d59cce483b3e19" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.208041,16.161302499999998" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_c32466f3ae659cbb7b6e1e0531712865.setContent(html_e5d6b8e14653305154d59cce483b3e19);
+            
+        
+
+        marker_cffe5c5466340fc28996677ff9fc1be8.bindPopup(popup_c32466f3ae659cbb7b6e1e0531712865)
+        ;
+
+        
+    
+    
+                marker_cffe5c5466340fc28996677ff9fc1be8.setIcon(div_icon_32635a3ddf35f351d5516654589b53bf);
+            
+    
+            var circle_771443bb09deb8a6c6eb98fa8c86dafe = L.circle(
+                [51.2069065, 16.157212],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_7acf4c9cdd7775f89f491113ff7eb495 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_919a381d366c57583db0c6307bf821da = $(`<div id="html_919a381d366c57583db0c6307bf821da" style="width: 100.0%; height: 100.0%;"><b>Klaster #7</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_7acf4c9cdd7775f89f491113ff7eb495.setContent(html_919a381d366c57583db0c6307bf821da);
+            
+        
+
+        circle_771443bb09deb8a6c6eb98fa8c86dafe.bindPopup(popup_7acf4c9cdd7775f89f491113ff7eb495)
+        ;
+
+        
+    
+    
+            var marker_525521a7afc6e4f5f050532cf0070f09 = L.marker(
+                [51.2069065, 16.157212],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_7a2903a6a42e06bb6d8aef613e55448d = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e7\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_93623f8ddcd00154963991b7344f6744 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f923d41a297c9395551effdac6bec8a2 = $(`<div id="html_f923d41a297c9395551effdac6bec8a2" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.2069065,16.157212" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_93623f8ddcd00154963991b7344f6744.setContent(html_f923d41a297c9395551effdac6bec8a2);
+            
+        
+
+        marker_525521a7afc6e4f5f050532cf0070f09.bindPopup(popup_93623f8ddcd00154963991b7344f6744)
+        ;
+
+        
+    
+    
+                marker_525521a7afc6e4f5f050532cf0070f09.setIcon(div_icon_7a2903a6a42e06bb6d8aef613e55448d);
+            
+    
+            var circle_a360f535a45b0366d0a39fe3f6bd8190 = L.circle(
+                [51.204645, 16.159779],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_aa7c165c1856e5e0eb6a415f6dc05569 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b3de6a5eeb0db04000f1fa769d0abab6 = $(`<div id="html_b3de6a5eeb0db04000f1fa769d0abab6" style="width: 100.0%; height: 100.0%;"><b>Klaster #8</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_aa7c165c1856e5e0eb6a415f6dc05569.setContent(html_b3de6a5eeb0db04000f1fa769d0abab6);
+            
+        
+
+        circle_a360f535a45b0366d0a39fe3f6bd8190.bindPopup(popup_aa7c165c1856e5e0eb6a415f6dc05569)
+        ;
+
+        
+    
+    
+            var marker_c7c6852194ceb232e489e588c36e22ff = L.marker(
+                [51.204645, 16.159779],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_7bd682e6ea909d11d87b7f7a85572126 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e8\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_819bbe40cb2c512de57ad926ff1e2eaa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_42e57f8723c5d5eae2594e4eceb46178 = $(`<div id="html_42e57f8723c5d5eae2594e4eceb46178" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.204645,16.159779" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_819bbe40cb2c512de57ad926ff1e2eaa.setContent(html_42e57f8723c5d5eae2594e4eceb46178);
+            
+        
+
+        marker_c7c6852194ceb232e489e588c36e22ff.bindPopup(popup_819bbe40cb2c512de57ad926ff1e2eaa)
+        ;
+
+        
+    
+    
+                marker_c7c6852194ceb232e489e588c36e22ff.setIcon(div_icon_7bd682e6ea909d11d87b7f7a85572126);
+            
+    
+            var circle_c3887a2a23fd65a2e41ec5fc9c5c9eb9 = L.circle(
+                [51.201033, 16.2108995],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_d7cc98f9f4d9760457719732ab7d74ca = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_fc0f452ab2ad64f584e454212b40e684 = $(`<div id="html_fc0f452ab2ad64f584e454212b40e684" style="width: 100.0%; height: 100.0%;"><b>Klaster #9</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_d7cc98f9f4d9760457719732ab7d74ca.setContent(html_fc0f452ab2ad64f584e454212b40e684);
+            
+        
+
+        circle_c3887a2a23fd65a2e41ec5fc9c5c9eb9.bindPopup(popup_d7cc98f9f4d9760457719732ab7d74ca)
+        ;
+
+        
+    
+    
+            var marker_d3b9fbf60c25321f45425f36d999efc7 = L.marker(
+                [51.201033, 16.2108995],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_671193535a684492128b2d262afe35c4 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e9\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_551fd98bd71efbc932d5e1caf65cd3fa = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_43c5b5f647bb31ffa6ad94cb61ee71ce = $(`<div id="html_43c5b5f647bb31ffa6ad94cb61ee71ce" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.201033,16.2108995" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_551fd98bd71efbc932d5e1caf65cd3fa.setContent(html_43c5b5f647bb31ffa6ad94cb61ee71ce);
+            
+        
+
+        marker_d3b9fbf60c25321f45425f36d999efc7.bindPopup(popup_551fd98bd71efbc932d5e1caf65cd3fa)
+        ;
+
+        
+    
+    
+                marker_d3b9fbf60c25321f45425f36d999efc7.setIcon(div_icon_671193535a684492128b2d262afe35c4);
+            
+    
+            var circle_dd9252a2e9d503e4dc928a745711c69d = L.circle(
+                [51.204838499999994, 16.213718999999998],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_5dca2a7e7d5d78e8e1661c4a5927faca = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a1aa40b9970b355fc60d331a179bf2ec = $(`<div id="html_a1aa40b9970b355fc60d331a179bf2ec" style="width: 100.0%; height: 100.0%;"><b>Klaster #10</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_5dca2a7e7d5d78e8e1661c4a5927faca.setContent(html_a1aa40b9970b355fc60d331a179bf2ec);
+            
+        
+
+        circle_dd9252a2e9d503e4dc928a745711c69d.bindPopup(popup_5dca2a7e7d5d78e8e1661c4a5927faca)
+        ;
+
+        
+    
+    
+            var marker_9199f9ea73ed101df1ad08b6e227888e = L.marker(
+                [51.204838499999994, 16.213718999999998],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_d77f9dc00b8331b1f22d6b92f00e18f4 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e10\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_eafbb56b3935ad7e1efe71558bb49eaf = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_f25a1916862f2c735dc2e1f69d7e3129 = $(`<div id="html_f25a1916862f2c735dc2e1f69d7e3129" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.204838499999994,16.213718999999998" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_eafbb56b3935ad7e1efe71558bb49eaf.setContent(html_f25a1916862f2c735dc2e1f69d7e3129);
+            
+        
+
+        marker_9199f9ea73ed101df1ad08b6e227888e.bindPopup(popup_eafbb56b3935ad7e1efe71558bb49eaf)
+        ;
+
+        
+    
+    
+                marker_9199f9ea73ed101df1ad08b6e227888e.setIcon(div_icon_d77f9dc00b8331b1f22d6b92f00e18f4);
+            
+    
+            var circle_5d90aff7e0f8c542b6d0e1b2c7d9152a = L.circle(
+                [51.2045195, 16.1506155],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_98512588029ed6f61c02580772ddf057 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_32174d8d910e2a3600ada874a5690ec8 = $(`<div id="html_32174d8d910e2a3600ada874a5690ec8" style="width: 100.0%; height: 100.0%;"><b>Klaster #11</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_98512588029ed6f61c02580772ddf057.setContent(html_32174d8d910e2a3600ada874a5690ec8);
+            
+        
+
+        circle_5d90aff7e0f8c542b6d0e1b2c7d9152a.bindPopup(popup_98512588029ed6f61c02580772ddf057)
+        ;
+
+        
+    
+    
+            var marker_e272beef31602f628c93ff63046cc512 = L.marker(
+                [51.2045195, 16.1506155],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_41f8cf6737ecf959c40c5bda9c72e634 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e11\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_b27ad5988c5fd2a00e3bd2a672d31f6d = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_4f48b5b33c51309b94cb28dee15a1e8e = $(`<div id="html_4f48b5b33c51309b94cb28dee15a1e8e" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.2045195,16.1506155" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_b27ad5988c5fd2a00e3bd2a672d31f6d.setContent(html_4f48b5b33c51309b94cb28dee15a1e8e);
+            
+        
+
+        marker_e272beef31602f628c93ff63046cc512.bindPopup(popup_b27ad5988c5fd2a00e3bd2a672d31f6d)
+        ;
+
+        
+    
+    
+                marker_e272beef31602f628c93ff63046cc512.setIcon(div_icon_41f8cf6737ecf959c40c5bda9c72e634);
+            
+    
+            var circle_1568b377ca799b19bf9db712c0b77260 = L.circle(
+                [51.207995999999994, 16.14622],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_f4a8439589b9a2828b9ebd9a82979a25 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_1f4f27effb4eb37640f0d29be0c97e59 = $(`<div id="html_1f4f27effb4eb37640f0d29be0c97e59" style="width: 100.0%; height: 100.0%;"><b>Klaster #12</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_f4a8439589b9a2828b9ebd9a82979a25.setContent(html_1f4f27effb4eb37640f0d29be0c97e59);
+            
+        
+
+        circle_1568b377ca799b19bf9db712c0b77260.bindPopup(popup_f4a8439589b9a2828b9ebd9a82979a25)
+        ;
+
+        
+    
+    
+            var marker_7ae4683b5662bebb3b9e6ae56c4c7a97 = L.marker(
+                [51.207995999999994, 16.14622],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_673791844b471b8c59708f3a7ddb24dd = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e12\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_48a9729b594832bc23e9f66805b09281 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_d6812dfe804f7899dedfe46a8b423930 = $(`<div id="html_d6812dfe804f7899dedfe46a8b423930" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.207995999999994,16.14622" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_48a9729b594832bc23e9f66805b09281.setContent(html_d6812dfe804f7899dedfe46a8b423930);
+            
+        
+
+        marker_7ae4683b5662bebb3b9e6ae56c4c7a97.bindPopup(popup_48a9729b594832bc23e9f66805b09281)
+        ;
+
+        
+    
+    
+                marker_7ae4683b5662bebb3b9e6ae56c4c7a97.setIcon(div_icon_673791844b471b8c59708f3a7ddb24dd);
+            
+    
+            var circle_01a14c8c6e37a45c5eb8ecdedb307e0c = L.circle(
+                [51.2118325, 16.161138],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_6ad702a8ced12ebc35078c50675f8fab = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_c9c3c33c6f9deeb72b1b6c93dbfbf569 = $(`<div id="html_c9c3c33c6f9deeb72b1b6c93dbfbf569" style="width: 100.0%; height: 100.0%;"><b>Klaster #13</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_6ad702a8ced12ebc35078c50675f8fab.setContent(html_c9c3c33c6f9deeb72b1b6c93dbfbf569);
+            
+        
+
+        circle_01a14c8c6e37a45c5eb8ecdedb307e0c.bindPopup(popup_6ad702a8ced12ebc35078c50675f8fab)
+        ;
+
+        
+    
+    
+            var marker_182cc60ec8ac1a5810acf41af33711fe = L.marker(
+                [51.2118325, 16.161138],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_66b03c0732e41e3f002c355600da1fce = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e13\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_ea38b066973df4c592d22e9151354405 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_bc34a7ed37281ce5a39adf7ff7d440a7 = $(`<div id="html_bc34a7ed37281ce5a39adf7ff7d440a7" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.2118325,16.161138" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_ea38b066973df4c592d22e9151354405.setContent(html_bc34a7ed37281ce5a39adf7ff7d440a7);
+            
+        
+
+        marker_182cc60ec8ac1a5810acf41af33711fe.bindPopup(popup_ea38b066973df4c592d22e9151354405)
+        ;
+
+        
+    
+    
+                marker_182cc60ec8ac1a5810acf41af33711fe.setIcon(div_icon_66b03c0732e41e3f002c355600da1fce);
+            
+    
+            var circle_ca9dbd7347d434889ed9e58a330fae55 = L.circle(
+                [51.210465, 16.1655235],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_ce8613e558a3c8f8bdd57c3a5102b496 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a2a5c3c97b5a14f01a243c41f9758557 = $(`<div id="html_a2a5c3c97b5a14f01a243c41f9758557" style="width: 100.0%; height: 100.0%;"><b>Klaster #14</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_ce8613e558a3c8f8bdd57c3a5102b496.setContent(html_a2a5c3c97b5a14f01a243c41f9758557);
+            
+        
+
+        circle_ca9dbd7347d434889ed9e58a330fae55.bindPopup(popup_ce8613e558a3c8f8bdd57c3a5102b496)
+        ;
+
+        
+    
+    
+            var marker_46e35e3c3bc7169fff254b0050a34534 = L.marker(
+                [51.210465, 16.1655235],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_bcb22e7be078caf024f9eaf3a541b0a9 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e14\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_951349e2b962d6b65090bf6e78409bb2 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cf6a8565216f57a744316caa4bcbdc6e = $(`<div id="html_cf6a8565216f57a744316caa4bcbdc6e" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.210465,16.1655235" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_951349e2b962d6b65090bf6e78409bb2.setContent(html_cf6a8565216f57a744316caa4bcbdc6e);
+            
+        
+
+        marker_46e35e3c3bc7169fff254b0050a34534.bindPopup(popup_951349e2b962d6b65090bf6e78409bb2)
+        ;
+
+        
+    
+    
+                marker_46e35e3c3bc7169fff254b0050a34534.setIcon(div_icon_bcb22e7be078caf024f9eaf3a541b0a9);
+            
+    
+            var circle_b7d75340d424cca4274747cc1244a647 = L.circle(
+                [51.2108275, 16.175365499999998],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_5d839ff9a690481734327129fc210333 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_23c8e476ca372c214e044ce30c527124 = $(`<div id="html_23c8e476ca372c214e044ce30c527124" style="width: 100.0%; height: 100.0%;"><b>Klaster #15</b><br>Kategorie: restauracja - Legnica, parkingi - Legnica<br>Liczba: 2</div>`)[0];
+                popup_5d839ff9a690481734327129fc210333.setContent(html_23c8e476ca372c214e044ce30c527124);
+            
+        
+
+        circle_b7d75340d424cca4274747cc1244a647.bindPopup(popup_5d839ff9a690481734327129fc210333)
+        ;
+
+        
+    
+    
+            var marker_037499f34d15dfa7012365646486d979 = L.marker(
+                [51.2108275, 16.175365499999998],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_792e1a00328e7fff59dda63417d05ae0 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e15\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_81d237ac8bd67985686f2e4152d7d541 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_c65e2a3c7908c1cab23535b534ae684a = $(`<div id="html_c65e2a3c7908c1cab23535b534ae684a" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.2108275,16.175365499999998" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_81d237ac8bd67985686f2e4152d7d541.setContent(html_c65e2a3c7908c1cab23535b534ae684a);
+            
+        
+
+        marker_037499f34d15dfa7012365646486d979.bindPopup(popup_81d237ac8bd67985686f2e4152d7d541)
+        ;
+
+        
+    
+    
+                marker_037499f34d15dfa7012365646486d979.setIcon(div_icon_792e1a00328e7fff59dda63417d05ae0);
+            
+    
+            var circle_6c4523fcecac89bf25f1852e10d49d2a = L.circle(
+                [51.1991845, 16.219151],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_c468131dbb0c0f7716331dd63afcb46d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_aef6873818c6ef260dd0ee7342c1781f = $(`<div id="html_aef6873818c6ef260dd0ee7342c1781f" style="width: 100.0%; height: 100.0%;"><b>Klaster #16</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_c468131dbb0c0f7716331dd63afcb46d.setContent(html_aef6873818c6ef260dd0ee7342c1781f);
+            
+        
+
+        circle_6c4523fcecac89bf25f1852e10d49d2a.bindPopup(popup_c468131dbb0c0f7716331dd63afcb46d)
+        ;
+
+        
+    
+    
+            var marker_214df01f6899776a217ee407278581ed = L.marker(
+                [51.1991845, 16.219151],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_9aaa696f2a7659a1f3fe2f2f90b95f96 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e16\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_b9e2199884e4de6f3a93f9beba91fc24 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_66800129bd3b7eafa5faf4ffea3d8e8d = $(`<div id="html_66800129bd3b7eafa5faf4ffea3d8e8d" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.1991845,16.219151" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_b9e2199884e4de6f3a93f9beba91fc24.setContent(html_66800129bd3b7eafa5faf4ffea3d8e8d);
+            
+        
+
+        marker_214df01f6899776a217ee407278581ed.bindPopup(popup_b9e2199884e4de6f3a93f9beba91fc24)
+        ;
+
+        
+    
+    
+                marker_214df01f6899776a217ee407278581ed.setIcon(div_icon_9aaa696f2a7659a1f3fe2f2f90b95f96);
+            
+    
+            var circle_1ddc8b9052d66ad7dedcefbc8adf77a4 = L.circle(
+                [51.2169945, 16.170969499999998],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_c32a6e7afc10d98cd9a9faad25de8b65 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b188aff077f2fbe735618888b0c9c275 = $(`<div id="html_b188aff077f2fbe735618888b0c9c275" style="width: 100.0%; height: 100.0%;"><b>Klaster #17</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_c32a6e7afc10d98cd9a9faad25de8b65.setContent(html_b188aff077f2fbe735618888b0c9c275);
+            
+        
+
+        circle_1ddc8b9052d66ad7dedcefbc8adf77a4.bindPopup(popup_c32a6e7afc10d98cd9a9faad25de8b65)
+        ;
+
+        
+    
+    
+            var marker_97705a337aa244ab76ec0b92da9e777f = L.marker(
+                [51.2169945, 16.170969499999998],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_463f74289bf322269ea14e073938e864 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e17\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_79bfaaf0188c03960700b9cafa2515d1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_9fc1153c6c8520b948e9d4038941ec32 = $(`<div id="html_9fc1153c6c8520b948e9d4038941ec32" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.2169945,16.170969499999998" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_79bfaaf0188c03960700b9cafa2515d1.setContent(html_9fc1153c6c8520b948e9d4038941ec32);
+            
+        
+
+        marker_97705a337aa244ab76ec0b92da9e777f.bindPopup(popup_79bfaaf0188c03960700b9cafa2515d1)
+        ;
+
+        
+    
+    
+                marker_97705a337aa244ab76ec0b92da9e777f.setIcon(div_icon_463f74289bf322269ea14e073938e864);
+            
+    
+            var circle_93672bc872a626f8a079d9b342dff026 = L.circle(
+                [51.192814999999996, 16.129036],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_5fb6b5234cdbf37e76f57ef9abbb4f68 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ad85d663edc49c7027509305dc99ca8b = $(`<div id="html_ad85d663edc49c7027509305dc99ca8b" style="width: 100.0%; height: 100.0%;"><b>Klaster #18</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_5fb6b5234cdbf37e76f57ef9abbb4f68.setContent(html_ad85d663edc49c7027509305dc99ca8b);
+            
+        
+
+        circle_93672bc872a626f8a079d9b342dff026.bindPopup(popup_5fb6b5234cdbf37e76f57ef9abbb4f68)
+        ;
+
+        
+    
+    
+            var marker_7a498ac215174d2599f7c1cb4209b190 = L.marker(
+                [51.192814999999996, 16.129036],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_780dda1363daf84b03b6a15ec5a688d8 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e18\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_4a6d19b2aa701ec07195af9293dccb83 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_5d60c75cf022dc24547c44c9c70ad346 = $(`<div id="html_5d60c75cf022dc24547c44c9c70ad346" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.192814999999996,16.129036" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_4a6d19b2aa701ec07195af9293dccb83.setContent(html_5d60c75cf022dc24547c44c9c70ad346);
+            
+        
+
+        marker_7a498ac215174d2599f7c1cb4209b190.bindPopup(popup_4a6d19b2aa701ec07195af9293dccb83)
+        ;
+
+        
+    
+    
+                marker_7a498ac215174d2599f7c1cb4209b190.setIcon(div_icon_780dda1363daf84b03b6a15ec5a688d8);
+            
+    
+            var circle_cc0b26b8a22c549c3f72c292964b2637 = L.circle(
+                [51.1891155, 16.1859085],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_4dee41b7985eb185b7cc7c9cfbf66fba = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7e040392a3f1bc07082ffccaef03b968 = $(`<div id="html_7e040392a3f1bc07082ffccaef03b968" style="width: 100.0%; height: 100.0%;"><b>Klaster #19</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_4dee41b7985eb185b7cc7c9cfbf66fba.setContent(html_7e040392a3f1bc07082ffccaef03b968);
+            
+        
+
+        circle_cc0b26b8a22c549c3f72c292964b2637.bindPopup(popup_4dee41b7985eb185b7cc7c9cfbf66fba)
+        ;
+
+        
+    
+    
+            var marker_5a5d8792034ec714711d6b9c4ce26613 = L.marker(
+                [51.1891155, 16.1859085],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_15b2f838f300a6b923fb93af52df5ef0 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e19\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_728a9069fba82ef3bf3fa87bcda42e5c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_23359df12a57960bc014ca2a6642e841 = $(`<div id="html_23359df12a57960bc014ca2a6642e841" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.1891155,16.1859085" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_728a9069fba82ef3bf3fa87bcda42e5c.setContent(html_23359df12a57960bc014ca2a6642e841);
+            
+        
+
+        marker_5a5d8792034ec714711d6b9c4ce26613.bindPopup(popup_728a9069fba82ef3bf3fa87bcda42e5c)
+        ;
+
+        
+    
+    
+                marker_5a5d8792034ec714711d6b9c4ce26613.setIcon(div_icon_15b2f838f300a6b923fb93af52df5ef0);
+            
+    
+            var circle_9bdbbeccc045edbfb29a35f00fb8d008 = L.circle(
+                [51.187588500000004, 16.173912],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_b9670f9a378ac911fcf17b9d92784e1d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ff8ab2a2eb625f89bb15fc3fa0837104 = $(`<div id="html_ff8ab2a2eb625f89bb15fc3fa0837104" style="width: 100.0%; height: 100.0%;"><b>Klaster #20</b><br>Kategorie: restauracja - Legnica, parkingi - Legnica<br>Liczba: 2</div>`)[0];
+                popup_b9670f9a378ac911fcf17b9d92784e1d.setContent(html_ff8ab2a2eb625f89bb15fc3fa0837104);
+            
+        
+
+        circle_9bdbbeccc045edbfb29a35f00fb8d008.bindPopup(popup_b9670f9a378ac911fcf17b9d92784e1d)
+        ;
+
+        
+    
+    
+            var marker_a1134a6e780eb047129851cdcde600ed = L.marker(
+                [51.187588500000004, 16.173912],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_02f872688deb2aba03123c674c4ba513 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e20\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_f1c0f5fab0d6222400c25043d8f9c71c = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_451ed84908eb699d6efd13d190b6ab66 = $(`<div id="html_451ed84908eb699d6efd13d190b6ab66" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.187588500000004,16.173912" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_f1c0f5fab0d6222400c25043d8f9c71c.setContent(html_451ed84908eb699d6efd13d190b6ab66);
+            
+        
+
+        marker_a1134a6e780eb047129851cdcde600ed.bindPopup(popup_f1c0f5fab0d6222400c25043d8f9c71c)
+        ;
+
+        
+    
+    
+                marker_a1134a6e780eb047129851cdcde600ed.setIcon(div_icon_02f872688deb2aba03123c674c4ba513);
+            
+    
+            var circle_49cfc82e14d4c2804c1256183a38b4d0 = L.circle(
+                [51.209056000000004, 16.1861085],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_6c3439f2d9450ca71e9b651fba3d8bbc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d819bf6c5975d383199345d670af9cc1 = $(`<div id="html_d819bf6c5975d383199345d670af9cc1" style="width: 100.0%; height: 100.0%;"><b>Klaster #21</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_6c3439f2d9450ca71e9b651fba3d8bbc.setContent(html_d819bf6c5975d383199345d670af9cc1);
+            
+        
+
+        circle_49cfc82e14d4c2804c1256183a38b4d0.bindPopup(popup_6c3439f2d9450ca71e9b651fba3d8bbc)
+        ;
+
+        
+    
+    
+            var marker_34d7edadb3f0a92dcec5c129ec9f1d31 = L.marker(
+                [51.209056000000004, 16.1861085],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_6b544c6c167414d2cb6d7b4492cbd1eb = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e21\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_eb8ca827dd454a5dc793ad9e46b1afd3 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_cc50da77d22451708d11875ecda78014 = $(`<div id="html_cc50da77d22451708d11875ecda78014" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.209056000000004,16.1861085" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_eb8ca827dd454a5dc793ad9e46b1afd3.setContent(html_cc50da77d22451708d11875ecda78014);
+            
+        
+
+        marker_34d7edadb3f0a92dcec5c129ec9f1d31.bindPopup(popup_eb8ca827dd454a5dc793ad9e46b1afd3)
+        ;
+
+        
+    
+    
+                marker_34d7edadb3f0a92dcec5c129ec9f1d31.setIcon(div_icon_6b544c6c167414d2cb6d7b4492cbd1eb);
+            
+    
+            var circle_76d2283d00f9a2af657d92135e131c19 = L.circle(
+                [51.208111, 16.2143],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_fcb5109b3ad81ecdee6d5f203471976b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9110a394137efb769484f1755f88f841 = $(`<div id="html_9110a394137efb769484f1755f88f841" style="width: 100.0%; height: 100.0%;"><b>Klaster #22</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_fcb5109b3ad81ecdee6d5f203471976b.setContent(html_9110a394137efb769484f1755f88f841);
+            
+        
+
+        circle_76d2283d00f9a2af657d92135e131c19.bindPopup(popup_fcb5109b3ad81ecdee6d5f203471976b)
+        ;
+
+        
+    
+    
+            var marker_c2012b18b6e17e4289ad08350e87e7cb = L.marker(
+                [51.208111, 16.2143],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_6e25433fa507d4847d6c77615394ed62 = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e22\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_6db10e1ec7a59de323df4b606fea0aa1 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_e501dee4e92b1825005c5aebe51cbb16 = $(`<div id="html_e501dee4e92b1825005c5aebe51cbb16" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.208111,16.2143" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_6db10e1ec7a59de323df4b606fea0aa1.setContent(html_e501dee4e92b1825005c5aebe51cbb16);
+            
+        
+
+        marker_c2012b18b6e17e4289ad08350e87e7cb.bindPopup(popup_6db10e1ec7a59de323df4b606fea0aa1)
+        ;
+
+        
+    
+    
+                marker_c2012b18b6e17e4289ad08350e87e7cb.setIcon(div_icon_6e25433fa507d4847d6c77615394ed62);
+            
+    
+            var circle_0d9d1333cbc0ddefd8d526fd5bebd4f6 = L.circle(
+                [51.212562000000005, 16.1666775],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_d83b5cda6fc0c037dada1d453242e218 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_27f15cdc32c05881e1b4f717166cc84f = $(`<div id="html_27f15cdc32c05881e1b4f717166cc84f" style="width: 100.0%; height: 100.0%;"><b>Klaster #23</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_d83b5cda6fc0c037dada1d453242e218.setContent(html_27f15cdc32c05881e1b4f717166cc84f);
+            
+        
+
+        circle_0d9d1333cbc0ddefd8d526fd5bebd4f6.bindPopup(popup_d83b5cda6fc0c037dada1d453242e218)
+        ;
+
+        
+    
+    
+            var marker_493b49a637fa9708c75ef57cb753d8a4 = L.marker(
+                [51.212562000000005, 16.1666775],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_95380f1cb9ca6dd742b7d7153b5e1ecc = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e23\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_04a159adabb078a5142f9dda436af1df = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_31227919bca28b5947c32457afb7fab6 = $(`<div id="html_31227919bca28b5947c32457afb7fab6" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.212562000000005,16.1666775" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_04a159adabb078a5142f9dda436af1df.setContent(html_31227919bca28b5947c32457afb7fab6);
+            
+        
+
+        marker_493b49a637fa9708c75ef57cb753d8a4.bindPopup(popup_04a159adabb078a5142f9dda436af1df)
+        ;
+
+        
+    
+    
+                marker_493b49a637fa9708c75ef57cb753d8a4.setIcon(div_icon_95380f1cb9ca6dd742b7d7153b5e1ecc);
+            
+    
+            var circle_3f3a96a20b97f752c67102741ce2378e = L.circle(
+                [51.209386, 16.192670999999997],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_90b3dfc56ecdbf9449595d206fb12be8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7e48c3ca6267952956a09c618403d1ee = $(`<div id="html_7e48c3ca6267952956a09c618403d1ee" style="width: 100.0%; height: 100.0%;"><b>Klaster #24</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_90b3dfc56ecdbf9449595d206fb12be8.setContent(html_7e48c3ca6267952956a09c618403d1ee);
+            
+        
+
+        circle_3f3a96a20b97f752c67102741ce2378e.bindPopup(popup_90b3dfc56ecdbf9449595d206fb12be8)
+        ;
+
+        
+    
+    
+            var marker_43a88efe8490fc1894a4c1e31094e94c = L.marker(
+                [51.209386, 16.192670999999997],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_5b4874f8d8f105b80bab82837d5f20ae = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e24\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_cda75ee1c1168cdd93f957f808d75817 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_ec08abfcf729389b5a411488b372d371 = $(`<div id="html_ec08abfcf729389b5a411488b372d371" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.209386,16.192670999999997" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_cda75ee1c1168cdd93f957f808d75817.setContent(html_ec08abfcf729389b5a411488b372d371);
+            
+        
+
+        marker_43a88efe8490fc1894a4c1e31094e94c.bindPopup(popup_cda75ee1c1168cdd93f957f808d75817)
+        ;
+
+        
+    
+    
+                marker_43a88efe8490fc1894a4c1e31094e94c.setIcon(div_icon_5b4874f8d8f105b80bab82837d5f20ae);
+            
+    
+            var circle_b5e9eb9c7bed772466c7e0c1ba6ea33d = L.circle(
+                [51.201554, 16.160673],
+                {"bubblingMouseEvents": true, "color": "yellow", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.15, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 400.0, "stroke": true, "weight": 2}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+        var popup_b9c93d1bb09d7d623d221ebd1feb005f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bf6aeda36d51ff6b1c0200f6b89fb2d4 = $(`<div id="html_bf6aeda36d51ff6b1c0200f6b89fb2d4" style="width: 100.0%; height: 100.0%;"><b>Klaster #25</b><br>Kategorie: parkingi - Legnica, restauracja - Legnica<br>Liczba: 2</div>`)[0];
+                popup_b9c93d1bb09d7d623d221ebd1feb005f.setContent(html_bf6aeda36d51ff6b1c0200f6b89fb2d4);
+            
+        
+
+        circle_b5e9eb9c7bed772466c7e0c1ba6ea33d.bindPopup(popup_b9c93d1bb09d7d623d221ebd1feb005f)
+        ;
+
+        
+    
+    
+            var marker_9770667a22d92e07e65c7d9f232d52bb = L.marker(
+                [51.201554, 16.160673],
+                {
+}
+            ).addTo(map_b7a7803e97ea6a992175bfee59a723ba);
+        
+    
+            var div_icon_5455b140f8c0a462800be8377eb5c79d = L.divIcon({
+  "html": "\u003cdiv style=\"background-color: yellow; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; border: 2px solid black;\"\u003e25\u003c/div\u003e",
+  "className": "empty",
+});
+        
+    
+        var popup_b8d80a6ab340e87873f124253ab58149 = L.popup({
+  "maxWidth": 300,
+});
+
+        
+            
+                var html_a9b28691518587159c1af22bbf764c28 = $(`<div id="html_a9b28691518587159c1af22bbf764c28" style="width: 100.0%; height: 100.0%;"><a href="https://www.google.com/maps?q=51.201554,16.160673" target="_blank">Otworz w Google Maps</a></div>`)[0];
+                popup_b8d80a6ab340e87873f124253ab58149.setContent(html_a9b28691518587159c1af22bbf764c28);
+            
+        
+
+        marker_9770667a22d92e07e65c7d9f232d52bb.bindPopup(popup_b8d80a6ab340e87873f124253ab58149)
+        ;
+
+        
+    
+    
+                marker_9770667a22d92e07e65c7d9f232d52bb.setIcon(div_icon_5455b140f8c0a462800be8377eb5c79d);
+            
+</script>
+</html>
