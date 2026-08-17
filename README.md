@@ -64,7 +64,7 @@ git clone https://github.com/TWOJ_LOGIN/osm-poi-finder.git
 pip install -r requirements.txt
 ```
 ## 🚀 Uruchomienie
-
+![Uruchomienie](nagranie.gif)
 ## 📊 Zapis do pliku CSV
 
 Każde wyszukiwanie może zostać zapisane do pliku CSV.
