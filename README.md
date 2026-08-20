@@ -95,7 +95,7 @@ Klaster 	Kategoria	            Nazwa	           Lat	       Lon       Odleglosc o
     └── overpass_client.py  // wysyłanie zapytań do API
 ├── storage
     ├── tags.json           // lokalizacja tagów OpenStreetMap
-├── └── storage.py          // zapis i wczytywanie miejsc
+    └── storage.py          // zapis i wczytywanie miejsc
 ├── cli.py                  // połączenie wszystkich funkcji w programie
 ├── launcher.py             // dla prostszego uruchomienia
 └── main.py                 // punkt wejścia
